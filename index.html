@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: #f1f5f9; color: #334155; }
-
+        
         /* --- NAVEGACIÓN --- */
         .nav-link { padding: 0.75rem 1.25rem; font-weight: 600; color: #64748b; transition: 0.3s; border-bottom: 3px solid transparent; position: relative; }
         .nav-link:hover { background: #e2e8f0; color: #1e293b; }
         .nav-link.active { background-color: white; color: #0f172a; box-shadow: 0 2px 4px rgba(0,0,0,0.05); position: relative; }
-
+        
         /* Indicadores de color */
         .nav-link.active::after { content: ''; position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); width: 20px; height: 3px; border-radius: 2px; }
         .nav-btn-habla.active::after { background: #0ea5e9; }
@@ -29,7 +29,7 @@
 
         .laminario-card { background: white; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); overflow: hidden; margin-bottom: 2rem; border: 1px solid #e2e8f0; }
         .laminario-header { padding: 1.5rem; color: white; display: flex; justify-content: space-between; align-items: center; position: relative; overflow: hidden; }
-
+        
         /* Colores Header */
         .header-habla { background-color: #0ea5e9; }
         .header-deglucion { background-color: #22c55e; }
@@ -41,13 +41,13 @@
         /* --- CONTENIDO INTERNO --- */
         .card-body { padding: 1.5rem; }
         .section-title { font-size: 1.1rem; font-weight: 800; color: #1e293b; margin: 1.5rem 0 1rem; display: flex; align-items: center; gap: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.5rem; }
-
+        
         /* Acordeones (Anatomía) */
         details { margin-bottom: 0.5rem; border: 1px solid #e2e8f0; border-radius: 0.5rem; overflow: hidden; background: white; }
         summary { cursor: pointer; padding: 0.75rem 1rem; background: #f8fafc; font-weight: 700; font-size: 0.9rem; display: flex; justify-content: space-between; align-items: center; transition: 0.2s; }
         details[open] > summary { background: #e2e8f0; border-bottom: 1px solid #cbd5e1; }
         .detail-content { padding: 1rem; font-size: 0.9rem; color: #475569; }
-
+        
         /* Sub-bloques AB y Nervios */
         .ab-block { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 0.5rem; border-radius: 0.5rem; margin-top: 0.5rem; text-align: center; }
         .ab-title { font-weight: 800; color: #0f172a; display: block; margin-bottom: 0.1rem; font-size: 0.85rem; }
@@ -59,29 +59,45 @@
         /* Grid Patología */
         .pathology-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; }
         .pathology-card { background: white; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.25rem; border-left-width: 4px; }
-
-        .path-title { font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; color: #1e293b; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.25rem; }
+        
+        .path-title { font-size: 1rem; font-weight: 800; color: #1e293b; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.25rem; }
         .path-detail { font-size: 0.85rem; margin-bottom: 0.4rem; line-height: 1.4; }
         .path-detail strong { color: #475569; }
 
         /* Etiquetas */
-        .tag { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 99px; font-size: 0.65rem; font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; }
-        .tag-neuro { background: #e0e7ff; color: #4338ca; }
-        .tag-org { background: #ffedd5; color: #9a3412; }
-        .tag-psico { background: #f3e8ff; color: #6b21a8; }
-        .tag-dev { background: #dcfce7; color: #15803d; }
-        .tag-func { background: #f3e8ff; color: #7e22ce; }
+        .tag { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 99px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; }
+
+        /* Colores Consistentes */
+        .text-cyan-700 { color: #0ea5e9; } .border-cyan-500 { border-left-color: #0ea5e9; }
+        .tag-habla-neuro { background: #e0f2fe; color: #0284c7; } .tag-habla-dev { background: #bae6fd; color: #0369a1; } .tag-habla-func { background: #dbeafe; color: #1e40af; }
+        
+        .text-green-700 { color: #22c55e; } .border-green-500 { border-left-color: #22c55e; }
+        .tag-deglu-neuro { background: #dcfce7; color: #15803d; } .tag-deglu-func { background: #f0fdf4; color: #365314; }
+        
+        .text-purple-700 { color: #a855f7; } .border-purple-500 { border-left-color: #a855f7; }
+        .tag-vest-org { background: #ede9fe; color: #6d28d9; }
+        
+        .text-yellow-700 { color: #eab308; } .border-yellow-500 { border-left-color: #eab308; }
+        .tag-audio-org { background: #fef3c7; color: #b45309; } .tag-audio-neuro { background: #fef08a; color: #a16207; }
+        
+        .text-orange-700 { color: #f97316; } .border-orange-500 { border-left-color: #f97316; }
+        .tag-lenguaje-neuro { background: #ffedd5; color: #c2410c; }
+        
+        .text-pink-700 { color: #ec4899; } .border-pink-500 { border-left-color: #ec4899; }
+        .tag-voz-neuro { background: #fbcfe8; color: #be185d; } .tag-voz-func { background: #fdf2f8; color: #9d174d; } .tag-voz-org { background: #fce7f3; color: #831843; }
+
 
         .diferenciacion { margin-top: 1rem; padding: 0.75rem; background: #fffbeb; border: 1px solid #fcd34d; border-radius: 0.5rem; font-size: 0.85rem; color: #92400e; font-style: italic; display: flex; gap: 0.5rem; }
         .diferenciacion::before { content: '\f0eb'; font-family: "Font Awesome 6 Free"; font-weight: 900; }
 
-        /* Botones IA */
-        .btn-gen { background: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.6); color: white; padding: 0.4rem 0.8rem; border-radius: 99px; font-size: 0.8rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; backdrop-filter: blur(4px); transition: 0.2s; }
-
+        /* Botones IA (Eliminados) */
+        .btn-gen { display: none; }
+        .btn-explain { display: none; }
+        
         .cita { font-size: 0.7em; vertical-align: super; color: #94a3b8; font-weight: 700; }
-
-        /* Chat Widget */
-        #chat-widget { position: fixed; bottom: 20px; right: 20px; z-index: 100; }
+        
+        /* Chat Widget (Eliminado) */
+        #chat-widget { display: none; }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
@@ -93,12 +109,12 @@
                 <img src="https://www.udalba.cl/wp-content/uploads/2023/01/logo-UDALBA-BLANCO.png" alt="Logo UDALBA" class="h-10 bg-slate-900 rounded px-2 object-contain">
                 <div>
                     <h1 class="text-2xl font-bold text-slate-800 uppercase tracking-wide leading-none">Laminario Clínico</h1>
-                    <span class="text-xs text-slate-500 font-medium">Fonoaudiología & IA</span>
+                    <span class="text-xs text-slate-500 font-medium">Fonoaudiología</span>
                 </div>
             </div>
             <div class="text-xs text-slate-500 text-center md:text-right">
-                <p><strong>Estudiantes:</strong> S. Ardiles, D. Ortiz, V. Flores</p>
-                <p><strong>Docente:</strong> L. Gabriel González</p>
+                <p><strong>Estudiantes:</strong> Sthefania Ardiles, Daniela Ortiz, Vania Flores</p>
+                <p><strong>Docente:</strong> Gabriel González</p>
             </div>
         </div>
         <div class="bg-white overflow-x-auto border-t border-slate-100">
@@ -120,35 +136,83 @@
         <section id="page-intro" class="page-content active">
             <div class="laminario-card p-8 max-w-5xl mx-auto border-t-4 border-slate-600">
                 <h2 class="text-3xl font-bold text-slate-800 mb-2 text-center">Laminario Clínico Integral</h2>
-                <p class="text-lg text-slate-600 mb-8 text-center">Guía de estudio avanzado que detalla la neuroanatomía y patología fonoaudiológica.</p>
+                <p class="text-lg text-slate-600 mb-4 text-center">
+                    Guía de estudio avanzado que detalla la neuroanatomía y patología fonoaudiológica.
+                </p>
+                
+                <h3 class="section-title text-slate-700 mt-6"><i class="fas fa-microscope"></i> Fonoaudiología y Áreas</h3>
+                <p class="text-sm mb-4">
+                    La **Fonoaudiología** es una disciplina clínica que evalúa, diagnostica, trata, previene y rehabilita los trastornos de la **comunicación humana** y de la **deglución** (el acto de tragar) en personas de todas las edades en todas las etapas de la vida.
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm mb-4">
+                    <div class="p-3 bg-cyan-50 rounded border border-cyan-100"><strong>Habla</strong></div>
+                    <div class="p-3 bg-green-50 rounded border border-green-100"><strong>Deglución</strong></div>
+                    <div class="p-3 bg-purple-50 rounded border border-purple-100"><strong>Vestibular</strong></div>
+                    <div class="p-3 bg-yellow-50 rounded border border-yellow-100"><strong>Audio</strong></div>
+                    <div class="p-3 bg-orange-50 rounded border border-orange-100"><strong>Lenguaje</strong></div>
+                    <div class="p-3 bg-pink-50 rounded border border-pink-100"><strong>Voz</strong></div>
+                </div>
 
+                <h3 class="section-title text-slate-700 mt-6"><i class="fas fa-brain"></i> Centros Neurológicos Existentes (Generalidades)</h3>
+                <div class="grid md:grid-cols-2 gap-4 text-sm mb-4">
+                    <div class="p-3 bg-slate-50 rounded border"><strong>Corteza Motora Primaria:</strong> Área de la corteza (AB 4) responsable de la ejecución final y directa de los movimientos voluntarios.</div>
+                    <div class="p-3 bg-slate-50 rounded border"><strong>Corteza Prefrontal / Premotora:</strong> Áreas corticales (AB 6, 9-11) dedicadas a la planificación, organización, volición y secuenciación de los movimientos complejos.</div>
+                    <div class="p-3 bg-slate-50 rounded border"><strong>Sistema Piramidal (Motoneurona Superior):</strong> Vía nerviosa directa que transporta las órdenes de movimiento voluntario desde la corteza hacia el tronco/médula.</div>
+                    <div class="p-3 bg-slate-50 rounded border"><strong>Ganglios Basales (Sistema Extrapiramidal):</strong> Estructuras subcorticales que modulan el tono muscular, la estabilidad postural, y el inicio/fin de los movimientos automáticos.</div>
+                    <div class="p-3 bg-slate-50 rounded border"><strong>Cerebelo:</strong> Estructura posterior clave para la coordinación, el equilibrio y la corrección de la precisión (metría) de los movimientos.</div>
+                    <div class="p-3 bg-slate-50 rounded border"><strong>Tálamo:</strong> Estación de relevo principal que filtra e integra la información sensorial y motora antes de enviarla a las áreas corticales superiores.</div>
+                    <div class="p-3 bg-slate-50 rounded border"><strong>Tronco Encefálico:</strong> Región que aloja los núcleos de los Pares Craneales y los centros reflejos vitales (respiración, deglución).</div>
+                </div>
+
+                <h3 class="section-title text-slate-700 mt-6"><i class="fas fa-network-wired"></i> Pares Craneales y Espinales</h3>
                 <details class="group mb-4">
-                    <summary class="bg-slate-100 text-slate-800">📚 Referencia Maestra: Pares Craneales y Espinales</summary>
+                    <summary class="bg-slate-100 text-slate-800">Función Principal de Pares Craneales (12 Pares)</summary>
                     <div class="detail-content text-xs">
-                        <h4 class="font-bold text-slate-700 mb-2">Pares Craneales (Función Fonoaudiológica Clave)</h4>
+                        <p class="mb-2">Los pares craneales controlan funciones vitales. Los más relevantes para la Fonoaudiología son:</p>
                         <ul class="nerve-list">
-                            <li><strong>I (Olfatorio):</strong> Sensación de olor (Fase pre-oral de deglución).</li>
-                            <li><strong>II (Óptico):</strong> Visión (Lectura, input vestibular).</li>
-                            <li><strong>III (Oculomotor):</strong> Motor ocular (Movimiento RVO).</li>
-                            <li><strong>IV (Troclear):</strong> Motor ocular (Oblicuo Superior).</li>
-                            <li><strong>V (Trigémino):</strong> Masticación, sensibilidad orofacial, tensión del velo/tímpano.</li>
-                            <li><strong>VI (Abducens):</strong> Motor ocular (Recto Lateral).</li>
-                            <li><strong>VII (Facial):</strong> Motor expresión facial, sello labial, gusto 2/3 ant, estapedio.</li>
+                            <li><strong>V (Trigémino):</strong> Masticación y sensibilidad facial.</li>
+                            <li><strong>VII (Facial):</strong> Motor de la expresión facial (sello labial).</li>
                             <li><strong>VIII (Vestibulococlear):</strong> Audición y Equilibrio.</li>
-                            <li><strong>IX (Glosofaríngeo):</strong> Sensibilidad faríngea (gatillo deglutorio), gusto.</li>
-                            <li><strong>X (Vago):</strong> Fonación, deglución, peristalsis esofágica.</li>
-                            <li><strong>XI (Accesorio):</strong> Postura cabeza/hombros (soporte respiratorio).</li>
-                            <li><strong>XII (Hipogloso):</strong> Movilidad lingual (articulación y bolo).</li>
-                        </ul>
-                         <h4 class="font-bold text-slate-700 mb-2 mt-4">Pares Espinales (Soporte Fono-Respiratorio)</h4>
-                        <ul class="nerve-list">
-                            <li><strong>C1, C2:</strong> Músculos suprahioideos (Elevación laríngea en deglución).</li>
-                            <li><strong>C3, C4, C5 (Frénico):</strong> Inervación del **Diafragma** (Motor primario de la inspiración).</li>
-                            <li><strong>T1-T11 (Intercostales):</strong> Control de la expansión torácica (Espiración regulada).</li>
-                            <li><strong>T7-L1 (Abdominales):</strong> Contracción abdominal para **volumen** (intensidad vocal) y tos.</li>
+                            <li><strong>X (Vago):</strong> Fonación, protección de la vía aérea (deglución).</li>
+                            <li><strong>XII (Hipogloso):</strong> Movilidad de la lengua.</li>
                         </ul>
                     </div>
                 </details>
+                <details class="group mb-4">
+                    <summary class="bg-slate-100 text-slate-800">Función Principal de Pares Espinales (31 Pares)</summary>
+                    <div class="detail-content text-xs">
+                        <p class="mb-2">Son fundamentales para el soporte respiratorio y postural.</p>
+                        <ul class="nerve-list">
+                            <li><strong>C3-C5 (Frénico):</strong> Controla el **Diafragma** (Motor primario de la inspiración).</li>
+                            <li><strong>T1-L1:</strong> Inervan los músculos intercostales y abdominales (Soporte de la columna de aire).</li>
+                        </ul>
+                    </div>
+                </details>
+                
+                <footer class="mt-12 pt-6 border-t text-sm text-gray-500">
+                    <h4 class="font-bold text-slate-700 mb-2">Referencias (Vancouver):</h4>
+                    <ol class="list-decimal list-inside space-y-1 text-xs">
+                        <li>Webb WG, Adler RK. **Neurología para el logopeda**. 5ª ed. Barcelona: Elsevier España; 2010.</li>
+                        <li>Freed DB. **Motor speech disorders**. 3ª ed. San Diego: Plural Publishing; 2020.</li>
+                        <li>Salesa Batlle E. **Tratado de audiología**. 2ª ed. Barcelona: Elsevier; 2013.</li>
+                        <li>The Bárány Society. **International Classification of Vestibular Disorders**. 2025.</li>
+                        <li>Moore KL. **Anatomía con orientación clínica**. 8ª ed. 2017.</li>
+                        <li>González R, Bevilacqua J. **Las disartrias**. Rev Hosp Clín Univ Chile. 2012;23:143-51.</li>
+                        <li>González R, Hornauer-Hughes A. **Cerebro y lenguaje**. Rev Hosp Clín Univ Chile. 2014;25:143-53.</li>
+                        <li>Bolaños V. **Mecanismos del habla**. Odovtos. 2006;8:22-31.</li>
+                        <li>Lempert T. **Vestibular migraine**. J Vestib Res. 2012;22:167-72.</li>
+                        <li>Duffy JR. **Motor speech disorders**. 2nd ed. St. Louis: Elsevier Mosby; 2005.</li>
+                        <li>Love RJ, Webb WJ. **Neurology for the speech-language pathologist**. 4th ed. Boston: Elsevier; 2001.</li>
+                        <li>González R, Araya C. **Disfagia en el paciente neurológico**. Rev Hosp Clín Univ Chile. 2000;11:252-260.</li>
+                        <li>Lázaro J. **Abordaje del paciente con disfagia**. Acta Gastroenterol Latinoam. 2020;50(3):328-333.</li>
+                        <li>NIDCD. **Spasmodic Dysphonia**. NIH; 2020.</li>
+                        <li>Biurrun Unzué. **Patología de la voz**. Todo ORL. 2020.</li>
+                        <li>Wimmer del S. J, Donoso S. R, Leiva C. A, Breinbauer K. H, Délano R. P. **Tinnitus: Una patología cerebral**. Rev. Otorrinolaringol. Cir. Cabeza Cuello. 2019;79(1):125-36.</li>
+                        <li>Muñoz-Proto F, Carnevale C, Bejarano-Panadés N, et al. **Manejo de hipoacusia neurosensorial súbita en atención primaria**. Acta Otorrinolaringol Esp. 2023;74(1):21-27.</li>
+                        <li>Müller E. **Infarto de la vía auditiva**. Rev Neurocirugia. 2018;29(4):180-185.</li>
+                        <li>Sarría P, Muñoz F. **Fractura del Peñasco y Sordera Traumática**. J Otorrinolaringol. 2021;10(2):45-50.</li>
+                    </ol>
+                </footer>
             </div>
         </section>
 
@@ -157,87 +221,92 @@
             <div class="laminario-card">
                 <div class="laminario-header header-habla">
                     <div><h2 class="text-2xl font-bold text-cyan-900">🗣️ Habla</h2><p class="text-sm opacity-90">Proceso Motor de Articulación y Producción Sonora.</p></div>
-                    <button class="btn-gen" onclick="generateCase('Habla')"><i class="fas fa-robot"></i> Caso Clínico</button>
                 </div>
                 <div class="card-body">
                     <h3 class="section-title text-cyan-700"><i class="fas fa-brain"></i> Centros Neurológicos</h3>
-
+                    
                     <details open><summary>Deseo de Moverse / Corteza de Asociación</summary>
                         <div class="detail-content">
                             <p class="ab-item"><strong>Función:</strong> Intención y volición del habla (Activación Límbica/Prefrontal). <span class="cita">(1)</span></p>
+                            <div class="grid grid-cols-3 gap-2">
+                                <div class="ab-block"><span class="ab-title">AB 9/10/11</span><p class="ab-func">Planificación Ejecutiva</p></div>
+                            </div>
                         </div>
                     </details>
-
+                    
                     <details><summary>Corteza Prefrontal / Premotora</summary>
                         <div class="detail-content">
                             <p class="ab-item"><strong>Función:</strong> Programación y secuenciación motora (Praxias del habla). <span class="cita">(1)</span></p>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="ab-block"><span class="ab-title">AB 44/45 (Broca)</span><p class="ab-func">Programación Fonológica</p></div>
+                                <div class="ab-block"><span class="ab-title">AB 6 (Premotora)</span><p class="ab-func">Secuenciación</p></div>
+                            </div>
                         </div>
                     </details>
-
+                    
                     <details><summary>Ganglios Basales (Sistema Extrapiramidal)</summary><div class="detail-content"><p><strong>Función:</strong> Regulación del **tono**, estabilidad y control de inicio/fin (Fluidez). <span class="cita">(2)</span></p></div></details>
                     <details><summary>Cerebelo</summary><div class="detail-content"><p><strong>Función:</strong> **Coordinación**, metría y timing. <span class="cita">(2)</span></p></div></details>
                     <details><summary>Tálamo</summary><div class="detail-content"><p><strong>Función:</strong> Relevo sensitivo-motora. Filtra y modula la información. <span class="cita">(1)</span></p></div></details>
                     <details><summary>Corteza Motora Primaria</summary><div class="detail-content"><p><strong>Función:</strong> Ejecución directa de la orden motora (AB 4).</p></div></details>
-                    <details><summary>Sistema Piramidal (MNS)</summary><div class="detail-content"><p><strong>Función:</strong> Vía directa. Controla movimientos **voluntarios finos**.</p></div></details>
+                    <details><summary>Sistema Piramidal (Motoneurona Superior)</summary><div class="detail-content"><p><strong>Función:</strong> Vía directa. Controla movimientos **voluntarios finos**.</p></div></details>
                     <details><summary>Sistema Extrapiramidal</summary><div class="detail-content"><p><strong>Función:</strong> Vías indirectas. Controla el **tono** y movimientos automáticos.</p></div></details>
 
                     <h3 class="section-title text-cyan-700"><i class="fas fa-notes-medical"></i> Trastornos</h3>
                     <div class="pathology-grid">
-                        <!-- Flácida -->
                         <div class="pathology-card border-l-4 border-cyan-500">
-                            <span class="tag tag-neuro">MNI</span><h4 class="path-title">Disartria Flácida</h4>
-                            <p class="path-detail"><strong>1. Descripción:</strong> Trastorno de ejecución por debilidad e **hipotonía** (MNI). <span class="cita">(2)</span></p>
+                            <span class="tag tag-habla-neuro">Motoneurona Inferior</span><h4 class="path-title">Disartria Flácida</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Trastorno de ejecución por debilidad e **hipotonía** (Motoneurona Inferior). <span class="cita">(2)</span></p>
                             <p class="path-detail"><strong>2. Causas:</strong> ELA, Miastenia Gravis, ACV Bulbar. <span class="cita">(1)</span></p>
                             <p class="path-detail"><strong>3. Síntomas:</strong> Sensación de fatiga al hablar, voz nasal.</p>
                             <p class="path-detail"><strong>4. Qué produce:</strong> Voz **soplada**, hipernasalidad, **atrofia**, fasciculaciones. <span class="cita">(2)</span></p>
                             <p class="path-detail"><strong>5. Cómo afecta:</strong> Inteligibilidad reducida, riesgo de aspiración (disfagia). <span class="cita">(2)</span></p>
                         </div>
-                        <!-- Espástica -->
                         <div class="pathology-card border-l-4 border-cyan-500">
-                            <span class="tag tag-neuro">MNS Bilateral</span><h4 class="path-title">Disartria Espástica</h4>
-                            <p class="path-detail"><strong>1. Descripción:</strong> Trastorno por **rigidez** y **esfuerzo** (MNS). <span class="cita">(2)</span></p>
+                            <span class="tag tag-habla-neuro">Motoneurona Superior Bilateral</span><h4 class="path-title">Disartria Espástica</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Trastorno por **rigidez** y **esfuerzo** (Motoneurona Superior). <span class="cita">(2)</span></p>
                             <p class="path-detail"><strong>2. Causas:</strong> ACV Bilateral, Parálisis Cerebral, ELA. <span class="cita">(1)</span></p>
                             <p class="path-detail"><strong>3. Síntomas:</strong> Habla lenta, sensación de tensión en la garganta.</p>
                             <p class="path-detail"><strong>4. Qué produce:</strong> Voz tensa-estrangulada, hipertonía, reflejos patológicos. <span class="cita">(2)</span></p>
                             <p class="path-detail"><strong>5. Cómo afecta:</strong> Habla muy forzada y difícil de entender. <span class="cita">(2)</span></p>
                         </div>
                         <div class="pathology-card border-l-4 border-cyan-500">
-                            <span class="tag tag-neuro">Cerebelo</span><h4 class="path-title">Disartria Atáxica</h4>
+                            <span class="tag tag-habla-neuro">Cerebelo</span><h4 class="path-title">Disartria Atáxica</h4>
                             <p class="path-detail"><strong>1. Descripción:</strong> Incoordinación y dismetría. <span class="cita">(2)</span></p>
                             <p class="path-detail"><strong>2. Causas:</strong> ACV cerebeloso, Ataxia de Friedreich. <span class="cita">(1)</span></p>
                             <p class="path-detail"><strong>3. Síntomas:</strong> Habla "borracha", quiebres impredecibles.</p>
-                            <p class="path-detail"><strong>4. Signos:</strong> Voz de ebrio, prosodia escandida. <span class="cita">(2)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Voz de ebrio, prosodia escandida. <span class="cita">(2)</span></p>
                             <p class="path-detail"><strong>5. Cómo afecta:</strong> Habla con quiebres de precisión y ritmo. <span class="cita">(2)</span></p>
                         </div>
                         <div class="pathology-card border-l-4 border-cyan-500">
-                            <span class="tag tag-neuro">Ganglios Basales</span><h4 class="path-title">Disartria Hipocinética</h4>
+                            <span class="tag tag-habla-neuro">Ganglios Basales</span><h4 class="path-title">Disartria Hipocinética</h4>
                             <p class="path-detail"><strong>1. Descripción:</strong> Reducción de amplitud y velocidad. <span class="cita">(2)</span></p>
                             <p class="path-detail"><strong>2. Causas:</strong> Enfermedad de Parkinson. <span class="cita">(1)</span></p>
                             <p class="path-detail"><strong>3. Síntomas:</strong> Bajo volumen, dificultad para iniciar el habla.</p>
-                            <p class="path-detail"><strong>4. Signos:</strong> Rigidez, monointensidad, festinación. <span class="cita">(2)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Rigidez, monointensidad, festinación. <span class="cita">(2)</span></p>
                             <p class="path-detail"><strong>5. Cómo afecta:</strong> Bajo volumen (no se escucha), dificultad en la inteligibilidad. <span class="cita">(2)</span></p>
                         </div>
                         <div class="pathology-card border-l-4 border-cyan-500">
-                            <span class="tag tag-neuro">Cortical</span><h4 class="path-title">Apraxia del Habla (AOS Adquirida)</h4>
+                            <span class="tag tag-habla-neuro">Cortical</span><h4 class="path-title">Apraxia del Habla (AOS Adquirida)</h4>
                             <p class="path-detail"><strong>1. Descripción:</strong> Falla en la **programación** motora (adquirida en adultez). <span class="cita">(2)</span></p>
                             <p class="path-detail"><strong>2. Causas:</strong> ACV (Lóbulo Frontal), Tumor. <span class="cita">(1)</span></p>
-                            <p class="path-detail"><strong>4. Signos:</strong> Errores inconsistentes, tanteo. Fuerza normal. <span class="cita">(2)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Errores inconsistentes, tanteo. Fuerza normal. <span class="cita">(2)</span></p>
                             <p class="path-detail"><strong>5. Cómo afecta:</strong> Frustración, sabe qué decir pero no puede articularlo. <span class="cita">(2)</span></p>
                             <div class="diferenciacion">Adquirida (adultos).</div>
                         </div>
                          <div class="pathology-card border-l-4 border-cyan-500">
-                            <span class="tag tag-dev">Apraxia Infantil (AHI)</span><h4 class="path-title">Apraxia Infantil</h4>
+                            <span class="tag tag-habla-dev">Desarrollo</span><h4 class="path-title">Apraxia Infantil (AHI)</h4>
                             <p class="path-detail"><strong>1. Descripción:</strong> Falla persistente en la secuenciación motora (de nacimiento). <span class="cita">(2)</span></p>
-                            <p class="path-detail"><strong>4. Signos:</strong> Inconsistencia articulatoria, errores en vocales. <span class="cita">(2)</span></p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Idiopática (Trastorno del Neurodesarrollo). <span class="cita">(2)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Inconsistencia articulatoria, errores en vocales. <span class="cita">(2)</span></p>
                             <p class="path-detail"><strong>5. Cómo afecta:</strong> Inteligibilidad muy baja. <span class="cita">(2)</span></p>
                             <div class="diferenciacion">De nacimiento.</div>
                         </div>
-                         <div class="pathology-card border-l-4 border-purple-300">
-                            <span class="tag tag-func">Fluidez</span><h4 class="path-title">Tartamudez (Disfemia)</h4>
+                         <div class="pathology-card border-l-4 border-cyan-500">
+                            <span class="tag tag-habla-func">Fluidez</span><h4 class="path-title">Tartamudez (Disfemia)</h4>
                             <p class="path-detail"><strong>1. Descripción:</strong> Alteración en la fluidez (repeticiones, bloqueos). <span class="cita">(6)</span></p>
                             <p class="path-detail"><strong>2. Causas:</strong> Neurodesarrollo. <span class="cita">(6)</span></p>
                             <p class="path-detail"><strong>3. Síntomas:</strong> Ansiedad social, miedo a hablar. <span class="cita">(6)</span></p>
-                            <p class="path-detail"><strong>4. Signos:</strong> Tensión facial/corporal asociada a la disfluencia.</p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Tensión facial/corporal asociada a la disfluencia.</p>
                             <p class="path-detail"><strong>5. Cómo afecta:</strong> Dificultad en la comunicación social y desempeño académico.</p>
                         </div>
                     </div>
@@ -250,34 +319,48 @@
             <div class="laminario-card">
                 <div class="laminario-header header-deglucion">
                     <div><h2 class="text-2xl font-bold text-green-900">🍽️ Deglución</h2><p class="text-sm opacity-90">Proceso Mixto (Voluntario/Reflejo)</p></div>
-                    <button class="btn-gen" onclick="generateCase('Deglución')"><i class="fas fa-robot"></i> Caso Clínico</button>
                 </div>
                 <div class="card-body">
                     <h3 class="section-title text-green-700"><i class="fas fa-brain"></i> Centros Neurológicos</h3>
-                    <details><summary>Corteza (Voluntario y Sensorial)</summary>
-                        <div class="detail-content">
-                             <div class="ab-item"><strong>AB 4 (Motor):</strong> Inicio y ejecución de la Fase Oral.</div>
-                             <div class="ab-item"><strong>AB 3,1,2 (Sensitivo):</strong> Feedback Táctil.</div>
-                             <div class="ab-item"><strong>Ínsula (AB 13-16):</strong> Programación.</div>
+                    <details open><summary>Control Cortical (Voluntario) y Modulación</summary>
+                         <div class="detail-content">
+                            <div class="ab-item"><strong>Corteza Motora Primaria (AB 4):</strong> Inicia el acto voluntario de la fase oral.</div>
+                            <div class="ab-item"><strong>Corteza Sensoriomotora (AB 3,1,2):</strong> Aporte sensorial sobre el bolo (textura, temperatura).</div>
+                            <div class="ab-item"><strong>Corteza Prefrontal / Insular:</strong> Planificación y programación del acto de tragar.</div>
+                            <div class="ab-item"><strong>Sistema Límbico:</strong> Regula el deseo y la aversión (emocional) hacia el alimento.</div>
+                            <div class="ab-item"><strong>Sistema Extrapiramidal / Ganglios Basales:</strong> Controla el tono y la estabilidad postural durante el acto de tragar.</div>
+                            <div class="ab-item"><strong>Cerebelo:</strong> Modula y coordina los movimientos para asegurar la fluidez y precisión de la deglución.</div>
                         </div>
                     </details>
-                    <details><summary>Tronco (Reflejo)</summary><div class="detail-content"><strong>GCP (Bulbo):</strong> N. Ambiguo (Motor) + N. Solitario (Sensitivo). Coordina fase faríngea.</div></details>
-
+                    <details><summary>Tronco Encefálico (Generador de Patrones Central y Nervios Craneales)</summary>
+                        <div class="detail-content">
+                            <div class="ab-item"><strong>Centro de la Deglución (Bulbo Raquídeo):</strong> Generador de Patrones Central (GPC) que coordina los movimientos complejos y rítmicos del reflejo faríngeo.</div>
+                            <div class="ab-item"><strong>Vías Sensoriales y Motoras (NC V, VII, IX, X, XII):</strong> Transmiten información sensorial y envían órdenes motoras a los músculos de la masticación y deglución.</div>
+                            <div class="sub-acordeon">
+                                <div class="ab-item"><strong>Nervio Trigémino (V):</strong> Motricidad de la masticación y elevación hioidea. Sensibilidad facial/oral.</div>
+                                <div class="ab-item"><strong>Nervio Facial (VII):</strong> Motricidad de la expresión facial (sello labial) y gusto 2/3 anteriores. Estimula las glándulas salivales.</div>
+                                <div class="ab-item"><strong>Nervio Glosofaríngeo (IX):</strong> Recoge la información sensorial y gustativa del tercio posterior de la lengua y la mucosa faríngea (gatillo deglutorio).</div>
+                                <div class="ab-item"><strong>Nervio Vago (X):</strong> Motricidad de la faringe/laringe (cierre cordal, protección de la vía aérea). Esencial para la propulsión esofágica y la sensibilidad faríngea/laríngea.</div>
+                                <div class="ab-item"><strong>Nervio Hipogloso (XII):</strong> Controla los músculos de la lengua (propulsión del bolo).</div>
+                            </div>
+                        </div>
+                    </details>
+                    
                     <h3 class="section-title text-green-700"><i class="fas fa-exclamation-triangle"></i> Trastornos: Disfagias</h3>
                     <div class="pathology-grid">
-                         <div class="pathology-card border-l-4 border-pink-400">
-                            <span class="tag tag-psico">Funcional</span>
+                         <div class="pathology-card border-l-4 border-green-500">
+                            <span class="tag tag-deglu-func">Funcional</span>
                             <h4 class="path-title">Disfagia Psicógena</h4>
-                            <p class="path-detail"><strong>1. Descripción:</strong> Sensación de "globo" faríngeo sin causa orgánica. <span class="cita">(13)</span></p>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Sensación de "globo" faríngeo sin causa orgánica. <span class="cita">(13)</span> **Centro afectado: Sistema Límbico**</p>
                             <p class="path-detail"><strong>2. Causas:</strong> Ansiedad, Fagofobia. <span class="cita">(13)</span></p>
                             <p class="path-detail"><strong>3. Síntomas:</strong> Miedo a tragar. <span class="cita">(13)</span></p>
                             <p class="path-detail"><strong>4. Qué produce:</strong> Rechazo a comer ciertos alimentos.</p>
-                            <p class="path-detail"><strong>5. Afección:</strong> Pérdida de peso, aislamiento social al comer. **No es orgánico**.</p>
+                            <p class="path-detail"><strong>5. Cómo afecta:</strong> Pérdida de peso, aislamiento social al comer. **No es orgánico**.</p>
                         </div>
                         <div class="pathology-card border-l-4 border-green-500">
-                            <span class="tag tag-neuro">Cortical Posterior</span>
+                            <span class="tag tag-deglu-neuro">Cortical Posterior</span>
                             <h4 class="path-title">Disfagia Sensorial</h4>
-                            <p class="path-detail"><strong>1. Descripción:</strong> Falla en la detección del bolo. <span class="cita">(12)</span></p>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Falla en la detección del bolo (Déficit sensorial cortical). <span class="cita">(12)</span> **Centro afectado: Corteza Sensoriomotora (AB 3,1,2)**</p>
                             <p class="path-detail"><strong>2. Causas:</strong> ACV Lóbulo Parietal. <span class="cita">(1)</span></p>
                             <p class="path-detail"><strong>3. Síntomas:</strong> El paciente no siente el alimento acumulado.</p>
                             <p class="path-detail"><strong>4. Qué produce:</strong> Retraso reflejo, <span class="font-bold text-red-600">aspiración silente</span>. <span class="cita">(12)</span></p>
@@ -285,13 +368,49 @@
                             <div class="diferenciacion">Falla la aferente (AB 3,1,2).</div>
                         </div>
                          <div class="pathology-card border-l-4 border-green-500">
-                            <span class="tag tag-neuro">Bulbar (MNI)</span>
+                            <span class="tag tag-deglu-neuro">Bulbar (MNI)</span>
                             <h4 class="path-title">Disfagia Flácida</h4>
-                            <p class="path-detail"><strong>1. Descripción:</strong> Parálisis faríngea (debilidad MNI). <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Parálisis faríngea (debilidad MNI). <span class="cita">(1)</span> **Centro afectado: Núcleos Motores del Tronco (X, XII)**</p>
                             <p class="path-detail"><strong>2. Causas:</strong> ACV Bulbar, ELA. <span class="cita">(1)</span></p>
                             <p class="path-detail"><strong>3. Síntomas:</strong> Tos al tragar, regurgitación nasal.</p>
                             <p class="path-detail"><strong>4. Qué produce:</strong> Ausencia de reflejo, parálisis velar. <span class="cita">(1)</span></p>
                             <p class="path-detail"><strong>5. Afección:</strong> Máximo riesgo vital por aspiración. <span class="cita">(1)</span></p>
+                        </div>
+                         <div class="pathology-card border-l-4 border-green-500">
+                            <span class="tag tag-deglu-neuro">Déficit Motor (MNS)</span>
+                            <h4 class="path-title">Disfagia Espástica (Pseudobulbar)</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Disfagia con reflejos exagerados y rigidez (Motoneurona Superior). <span class="cita">(1, 12)</span> **Centro afectado: Vías Corticales Bilaterales**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> ACV bilateral, Parálisis Cerebral, Esclerosis Múltiple. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Dificultad para iniciar la masticación, babeo, llanto/risa patológica. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Reflejo de deglución exagerado e ineficaz, lentitud motora. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>5. Afección:</strong> Aumento del tiempo de alimentación, riesgo de aspiración por movimientos incontrolados. <span class="cita">(12)</span></p>
+                        </div>
+                         <div class="pathology-card border-l-4 border-green-500">
+                            <span class="tag tag-deglu-neuro">Ganglios Basales</span>
+                            <h4 class="path-title">Disfagia Hipocinética</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Lentitud y rigidez del movimiento oral/faríngeo (Ganglios Basales). <span class="cita">(1)</span> **Centro afectado: Sistema Extrapiramidal**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Enfermedad de Parkinson. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Residuo en la boca, múltiples degluciones. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Falla en la propulsión del bolo (lengua), apertura limitada del Esfínter Esofágico Superior. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>5. Afección:</strong> Desnutrición por ingesta prolongada, riesgo de neumonía por penetración. <span class="cita">(12)</span></p>
+                        </div>
+                         <div class="pathology-card border-l-4 border-green-500">
+                            <span class="tag tag-deglu-neuro">Tronco Encefálico</span>
+                            <h4 class="path-title">Disfagia del Tronco</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Afectación del Generador de Patrones Central, causando falla en el reflejo. <span class="cita">(1)</span> **Centro afectado: Centro de la Deglución (Bulbo)**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> ACV de arteria vertebral o basilar (infarto bulbar). <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Ausencia de tos, debilidad vocal. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Retraso o ausencia del reflejo de deglución, parálisis de cuerdas vocales. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>5. Afección:</strong> Máximo riesgo vital por aspiración y muerte por neumonía. <span class="cita">(12)</span></p>
+                        </div>
+                         <div class="pathology-card border-l-4 border-green-500">
+                            <span class="tag tag-deglu-neuro">Cerebelo</span>
+                            <h4 class="path-title">Disfagia Atáxica/Cerebelar</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Incoordinación de las fases oral y faríngea (Disfunción Cerebelar). <span class="cita">(1)</span> **Centro afectado: Cerebelo**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> ACV cerebeloso, Ataxias. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Inestabilidad de la cabeza, temblor al sostener el bolo. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Incoordinación entre respiración y deglución, penetración laríngea. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>5. Afección:</strong> Riesgo de neumonía por falta de *timing* en la protección aérea. <span class="cita">(12)</span></p>
                         </div>
                     </div>
                 </div>
@@ -303,28 +422,98 @@
             <div class="laminario-card">
                 <div class="laminario-header header-vestibular">
                     <div><h2 class="text-2xl font-bold text-purple-900">⚖️ Vestibular</h2></div>
-                    <button class="btn-gen" onclick="generateCase('Vestibular')"><i class="fas fa-robot"></i> Caso Clínico</button>
                 </div>
                 <div class="card-body">
                     <h3 class="section-title text-purple-700"><i class="fas fa-brain"></i> Centros Neurológicos</h3>
-                    <details><summary>Corteza Vestibular</summary><div class="detail-content">AB 40 (Integración Espacial), AB 2 (Propiocepción).</div></details>
-                    <details><summary>Núcleos Vestibulares</summary><div class="detail-content">Centro de procesamiento (Tronco).</div></details>
-
+                    <details open><summary>Núcleos Vestibulares y Tronco Encefálico</summary>
+                        <div class="detail-content">
+                            <div class="ab-item"><strong>Tronco Encefálico:</strong> Región donde el nervio vestibular (VIII) ingresa y termina en el complejo nuclear vestibular.</div>
+                            <div class="ab-item"><strong>Núcleos Vestibulares (Superior, Inferior, Medial, Lateral):</strong> Son el principal punto de entrada de la información vestibular en el tronco. El complejo se divide en cuatro núcleos que reciben vías ascendentes y descendentes para el procesamiento inicial del equilibrio.</div>
+                            <div class="ab-item"><strong>Núcleos Oculomotores (III, IV, VI):</strong> Controlan los músculos de los ojos, coordinando el movimiento ocular con los movimientos de la cabeza (Reflejo Vestíbulo Ocular).</div>
+                        </div>
+                    </details>
+                    <details><summary>Sistemas Centrales de Integración</summary>
+                        <div class="detail-content">
+                             <div class="ab-item"><strong>Cerebelo:</strong> Recibe información para coordinar movimientos complejos, corregir la postura y mantener el equilibrio. Su participación es crucial para corregir movimientos del cuerpo y los ojos en respuesta a cambios en la posición de la cabeza.</div>
+                            <div class="ab-item"><strong>Tálamo:</strong> Estación de relevo que envía la información vestibular a la corteza cerebral para el procesamiento consciente.</div>
+                            <div class="ab-item"><strong>Corteza Cerebral (AB 40, AB 2):</strong> Integra la información vestibular con la visión y la propiocepción para ajustar y controlar el equilibrio de manera consciente.</div>
+                        </div>
+                    </details>
+                    
                     <h3 class="section-title text-purple-700"><i class="fas fa-history"></i> Trastornos (Bárány Society)</h3>
+
+                    <h4 class="text-lg font-semibold text-purple-700 mt-4 mb-2">AGUDOS / SVA (Sistema Vestibular Agudo: Horas - Días)</h4>
                     <div class="pathology-grid">
                         <div class="pathology-card border-l-4 border-purple-500">
-                            <span class="tag tag-org">Agudo (SVA)</span>
+                            <span class="tag tag-vest-org">Agudo (SVA)</span>
                             <h4 class="path-title">Neuritis Vestibular</h4>
-                            <p class="path-detail"><strong>1. Descripción:</strong> Inflamación viral del N. VIII. <span class="cita">(4)</span></p>
-                            <p class="path-detail"><strong>4. Signos:</strong> Vértigo días, sin hipoacusia. <span class="cita">(4)</span></p>
-                            <p class="path-detail"><strong>5. Afección:</strong> Incapacidad para moverse o caminar.</p>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Inflamación viral del Nervio Vestibulococlear (VIII Par Craneal). Episodio único. <span class="cita">(4)</span> **Daño: Nervio Vestibular (Periférico)**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Infección viral, isquemia del laberinto. <span class="cita">(4)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Vértigo rotatorio severo, náuseas, incapacidad para caminar.</p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Nistagmo espontáneo horizontal/rotatorio. **No presenta gatillos**. <span class="cita">(4)</span></p>
+                            <p class="path-detail"><strong>5. Cómo afecta:</strong> Inestabilidad grave temporal (días). <span class="cita">(4)</span></p>
                         </div>
                         <div class="pathology-card border-l-4 border-purple-500">
-                            <span class="tag tag-org">Episódico (SVE)</span>
-                            <h4 class="path-title">VPPB</h4>
-                            <p class="path-detail"><strong>1. Descripción:</strong> Vértigo breve posicional. <span class="cita">(4)</span></p>
-                            <p class="path-detail"><strong>2. Causas:</strong> Idiosincrático, TCE. <span class="cita">(4)</span></p>
-                            <p class="path-detail"><strong>5. Afección:</strong> Miedo a los movimientos de cabeza. <span class="cita">(4)</span></p>
+                            <span class="tag tag-vest-org">Agudo (SVA)</span>
+                            <h4 class="path-title">ACV de Fosa Posterior</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Lesión isquémica o hemorrágica en el tronco encefálico o cerebelo. **Daño: Tronco Encefálico (Central)** <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Accidente Cerebrovascular (ACV). Pacientes con factores de riesgo vascular. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Vértigo severo, náuseas, a menudo disartria/diplopía, cefalea. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Nistagmo vertical o de dirección cambiante. **No presenta gatillos**. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>5. Cómo afecta:</strong> Inestabilidad crónica y déficits neurológicos asociados.</p>
+                        </div>
+                    </div>
+
+                    <h4 class="text-lg font-semibold text-purple-700 mt-6 mb-2">EPISÓDICOS / SVE (Sistema Vestibular Episódico: Segundos - Horas)</h4>
+                    <div class="pathology-grid">
+                        <div class="pathology-card border-l-4 border-purple-500">
+                            <span class="tag tag-vest-org">Episódico (SVE)</span>
+                            <h4 class="path-title">Vértigo Posicional Paroxístico Benigno (VPPB)</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Sensación de vértigo breve y recurrente (Segundos a Minutos). <span class="cita">(4)</span> **Daño: Oído Interno (Canales Semicirculares)**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Desplazamiento de otoconias (cristales) en los conductos semicirculares. <span class="cita">(4)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Vértigo intenso con cambios de posición (acostarse, girar). <span class="cita">(4)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Vértigo que dura menos de un minuto. Presenta **gatillos** (cambios de posición de la cabeza). <span class="cita">(4)</span></p>
+                            <p class="path-detail"><strong>5. Cómo afecta:</strong> Miedo a los movimientos de cabeza, limitación de la movilidad.</p>
+                        </div>
+                        <div class="pathology-card border-l-4 border-purple-500">
+                            <span class="tag tag-vest-org">Episódico (SVE)</span>
+                            <h4 class="path-title">Enfermedad de Ménière</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Acumulación de endolinfa en el oído interno (Hidrops endolinfático). Episodios recurrentes. <span class="cita">(4)</span> **Daño: Oído Interno (Laberinto)**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Idiopática (Presión anormal en el laberinto). <span class="cita">(4)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Vértigo severo, hipoacusia fluctuante (empeora en crisis), plenitud aural. <span class="cita">(4)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Crisis de vértigo de 20 minutos a horas. No presenta **gatillos** claros. <span class="cita">(4)</span></p>
+                            <p class="path-detail"><strong>5. Cómo afecta:</strong> Deterioro progresivo de la audición y la calidad de vida por las crisis.</p>
+                        </div>
+                        <div class="pathology-card border-l-4 border-purple-500">
+                            <span class="tag tag-vest-org">Episódico (SVE)</span>
+                            <h4 class="path-title">Migraña Vestibular</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Episodios de vértigo o mareo recurrente asociados a síntomas migrañosos. <span class="cita">(9)</span> **Daño: Vascular/Central (Tronco/Cerebro)**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Disfunción del sistema serotoninérgico central (migraña). <span class="cita">(9)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Mareo (leve a severo), fotofobia, fonofobia, dolor de cabeza asociado. <span class="cita">(9)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Episodios de minutos a días. Puede tener **gatillos** (estrés, dieta, sueño). <span class="cita">(9)</span></p>
+                            <p class="path-detail"><strong>5. Cómo afecta:</strong> Gran impacto en la vida diaria por la impredecibilidad de los episodios y la hipersensibilidad sensorial.</p>
+                        </div>
+                    </div>
+
+                    <h4 class="text-lg font-semibold text-purple-700 mt-6 mb-2">CRÓNICOS / SVC (Sistema Vestibular Crónico: Persistente)</h4>
+                    <div class="pathology-grid">
+                        <div class="pathology-card border-l-4 border-purple-500">
+                            <span class="tag tag-vest-org">Crónico (SVC)</span>
+                            <h4 class="path-title">Mareo Postural Perceptual Persistente (MPPP/PPPD)</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Mareo o inestabilidad crónica (dura más de 3 meses), fluctuante pero presente la mayoría de los días. **Daño: Central Funcional/Adaptativo** <span class="cita">(18)</span></p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Suele seguir a un evento vestibular agudo (ej. Neuritis), Estrés o Trastorno de Ansiedad. <span class="cita">(21, 23)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Mareo/inestabilidad sin vértigo rotatorio, fatiga al caminar, dificultad de navegación espacial. <span class="cita">(6)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Los síntomas empeoran por la postura (bipedestación) y por la exposición a movimientos complejos (ej. Multitudes). Presenta **gatillos** (estímulos visuales, esfuerzo cognitivo). <span class="cita">(18)</span></p>
+                            <p class="path-detail"><strong>5. Cómo afecta:</strong> Dificultad para las actividades diarias, deterioro de la navegación espacial y alto impacto emocional. <span class="cita">(22, 24)</span></p>
+                        </div>
+                        <div class="pathology-card border-l-4 border-purple-500">
+                            <span class="tag tag-vest-org">Crónico (SVC)</span>
+                            <h4 class="path-title">Vértigo Crónico no Específico</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Mareo o inestabilidad persistente sin una etiología orgánica definida que cumpla criterios de PPPD. **Daño: Múltiple/Adaptativo** <span class="cita">(4)</span></p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Residuo de lesiones vestibulares no compensadas, multifactorial. <span class="cita">(4)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Sensación constante de flotación o inestabilidad al caminar.</p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Nistagmo leve o ausente. Puede presentar **gatillos** ambientales, pero es menos específico que el PPPD. <span class="cita">(4)</span></p>
+                            <p class="path-detail"><strong>5. Cómo afecta:</strong> Baja calidad de vida y limitación en la movilidad.</p>
                         </div>
                     </div>
                 </div>
@@ -336,27 +525,106 @@
             <div class="laminario-card">
                  <div class="laminario-header header-audio">
                     <div><h2 class="text-2xl font-bold text-yellow-900">👂 Audio</h2></div>
-                    <button class="btn-gen" onclick="generateCase('Audiología')"><i class="fas fa-robot"></i> Caso Clínico</button>
                 </div>
                 <div class="card-body">
                     <h3 class="section-title text-yellow-700"><i class="fas fa-brain"></i> Centros Neurológicos</h3>
-                    <details><summary>Corteza Auditiva</summary><div class="detail-content">AB 41/42 (Recepción), AB 22 (Comprensión).</div></details>
-                    <details><summary>Vía Auditiva Central</summary><div class="detail-content">Núcleos Cocleares, Oliva Superior.</div></details>
+                    <details open><summary>Vía Central Auditiva</summary>
+                         <div class="detail-content">
+                            <div class="ab-item"><strong>Ganglio de Corti:</strong> Contiene los cuerpos neuronales que detectan el sonido y envían la señal al tronco encefálico.</div>
+                            <div class="ab-item"><strong>Núcleos cocleares:</strong> Primera parada en el tronco encefálico. Reciben la información del Ganglio de Corti.</div>
+                            <div class="ab-item"><strong>Complejo Olivar Superior:</strong> Integra la información de ambos oídos para la localización del sonido en el espacio.</div>
+                            <div class="ab-item"><strong>Colículo Inferior y Lemnisco Lateral:</strong> Estación intermedia que integra la información de localización y envía señales al tálamo.</div>
+                            <div class="ab-item"><strong>Cuerpo Geniculado Medial del Tálamo:</strong> Centro de relevo principal para la información auditiva antes de la corteza.</div>
+                            <div class="ab-item"><strong>Corteza Auditiva (AB 41/42):</strong> Centro de procesamiento final en el lóbulo temporal para la audición y el reconocimiento del lenguaje.</div>
+                            <div class="ab-item"><strong>Tronco Encefálico:</strong> Región que alberga los núcleos cocleares y olivales, crucial para el procesamiento de la información auditiva bilateral y los reflejos acústicos.</div>
+                        </div>
+                    </details>
 
+                    <h3 class="section-title text-yellow-700"><i class="fas fa-network-wired"></i> Pares Craneales y Espinales</h3>
+                    <details><summary>Pares Craneales</summary>
+                        <div class="detail-content">
+                            <ul class="nerve-list">
+                                <li><strong>Nervio Vestibulococlear (VIII):</strong> Transmite audición y equilibrio. Es un nervio principalmente sensitivo.</li>
+                                <li><strong>Nervio Trigémino (V):</strong> Inervación motora al músculo tensor del tímpano (regulación de la rigidez de la cadena osicular).</li>
+                                <li><strong>Nervio Facial (VII):</strong> Inerva el músculo estapedio (regulación del movimiento del estribo, afecta a la audición).</li>
+                                <li><strong>Nervio Vago (X) y Glosofaríngeo (IX):</strong> Contienen fibras sensitivas que pueden estar involucradas en la percepción de ciertos estímulos auditivos.</li>
+                            </ul>
+                        </div>
+                    </details>
+                    
                     <h3 class="section-title text-yellow-700"><i class="fas fa-deaf"></i> Trastornos</h3>
                     <div class="pathology-grid">
                          <div class="pathology-card border-l-4 border-yellow-500">
-                            <span class="tag tag-org">Conducción</span>
-                            <h4 class="path-title">Hipoacusia Conductiva</h4>
-                            <p class="path-detail"><strong>1. Descripción:</strong> Falla mecánica. Baja intensidad. <span class="cita">(3)</span></p>
-                            <p class="path-detail"><strong>2. Causas:</strong> Otitis, tapón, otosclerosis. <span class="cita">(3)</span></p>
-                            <p class="path-detail"><strong>4. Qué produce:</strong> Baja de umbral. Vía ósea normal.</p>
+                            <span class="tag tag-audio-org">Conducción</span>
+                            <h4 class="path-title">Hipoacusia Conductiva (HC)</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Falla mecánica (Oído externo/medio). <span class="cita">(3)</span> **Daño: Oído externo y/o oído medio**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Otitis, tapón de cerumen, otosclerosis. <span class="cita">(3)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Sensación de oído tapado. <span class="cita">(3)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Baja de umbral. Vía ósea normal. <span class="cita">(3)</span></p>
+                            <p class="path-detail"><strong>5. Cómo afecta:</strong> Dificultad para oír voces bajas. <span class="cita">(3)</span></p>
                         </div>
                         <div class="pathology-card border-l-4 border-yellow-500">
-                            <span class="tag tag-neuro">Neural</span>
-                            <h4 class="path-title">Neuropatía Auditiva</h4>
-                            <p class="path-detail"><strong>1. Descripción:</strong> Disincronía del N. VIII. <span class="cita">(3)</span></p>
-                            <p class="path-detail"><strong>4. Qué produce:</strong> EOA presentes. ABR alterado. No entiende habla. <span class="cita">(3)</span></p>
+                            <span class="tag tag-audio-neuro">Sensorioneural (HSN)</span>
+                            <h4 class="path-title">Hipoacusia Sensorioneural (HSN)</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Daño neurosensorial. <span class="cita">(3)</span> **Daño: Oído interno o Nervio Auditivo**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Trauma acústico, presbiacusia, exposición a ototóxicos. <span class="cita">(3)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Dificultad para entender el habla, tinnitus. <span class="cita">(3)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Baja de umbral y mala discriminación del lenguaje. <span class="cita">(3)</span></p>
+                            <p class="path-detail"><strong>5. Cómo afecta:</strong> Gran dificultad en la comunicación social y comprensión de la palabra. <span class="cita">(3)</span></p>
+                        </div>
+                         <div class="pathology-card border-l-4 border-yellow-500">
+                            <span class="tag tag-audio-org">Sensorial</span>
+                            <h4 class="path-title">Tinnitus</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Percepción de sonido sin fuente externa. <span class="cita">(3, 16)</span> **Daño: Generalmente coclear/neural (VIII par)**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Exposición a ruido, estrés, daño coclear. <span class="cita">(16)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Zumbido, pitido o murmullo constante. <span class="cita">(3)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Hiperactividad neuronal en la corteza auditiva. <span class="cita">(16)</span></p>
+                            <p class="path-detail"><strong>5. Afección:</strong> Estrés, insomnio, dificultad en la concentración.</p>
+                        </div>
+                         <div class="pathology-card border-l-4 border-yellow-500">
+                            <span class="tag tag-audio-neuro">Tumor (N. VIII)</span>
+                            <h4 class="path-title">Neurinoma del Acústico</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Tumor benigno (Schwannoma) que crece en el Nervio Vestibulococlear. <span class="cita">(1)</span> **Daño: Nervio Craneal (VIII)**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Idiosincrásico o Neurofibromatosis Tipo 2. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Hipoacusia asimétrica, tinnitus, inestabilidad. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Compresión gradual del Nervio VIII.</p>
+                            <p class="path-detail"><strong>5. Afección:</strong> Pérdida auditiva asimétrica y riesgo de daño cerebeloso/troncal.</p>
+                        </div>
+                         <div class="pathology-card border-l-4 border-yellow-500">
+                            <span class="tag tag-audio-org">Cochlear</span>
+                            <h4 class="path-title">Hipoacusia Súbita</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Pérdida auditiva neurosensorial de 30 dB o más en menos de 72 horas. <span class="cita">(17)</span> **Daño: Oído Interno (Coclea)**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Idiopática (la más común), viral, vascular. <span class="cita">(17)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Sensación de oído tapado, mareo/vértigo. <span class="cita">(17)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Caída abrupta en audiometría, disfunción coclear. <span class="cita">(17)</span></p>
+                            <p class="path-detail"><strong>5. Afección:</strong> Requiere atención médica inmediata (Emergencia Audiológica).</p>
+                        </div>
+                         <div class="pathology-card border-l-4 border-yellow-500">
+                            <span class="tag tag-audio-neuro">Vía Central</span>
+                            <h4 class="path-title">Infarto de Vía Auditiva</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Lesión isquémica en el tronco encefálico o la corteza, afectando la vía auditiva central. <span class="cita">(1, 19)</span> **Daño: Tronco Encefálico o Corteza Auditiva**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Accidente Cerebro Vascular (ACV) en tronco encefálico (arteria cerebelosa) o tálamo. <span class="cita">(19)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Hipoacusia o sordera unilateral/bilateral, con déficits focales (ej. disartria). <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Falla en el procesamiento central (pérdida de la localización del sonido). <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>5. Afección:</strong> Agnosia auditiva o sordera cortical (bilateral). <span class="cita">(1)</span></p>
+                        </div>
+                         <div class="pathology-card border-l-4 border-yellow-500">
+                            <span class="tag tag-audio-org">Traumático</span>
+                            <h4 class="path-title">Fractura Transversal de Peñasco</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Fractura del hueso temporal que atraviesa la cóclea. <span class="cita">(20)</span> **Daño: Oído Interno (Coclea y Nervio VIII)**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Traumatismo Craneoencefálico (TCE) severo. <span class="cita">(20)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Sangrado por el oído (otorragia), pérdida de líquido cefalorraquídeo. <span class="cita">(20)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Hipoacusia Sensorioneural total e irreversible y parálisis facial (daño al nervio). <span class="cita">(20)</span></p>
+                            <p class="path-detail"><strong>5. Afección:</strong> Sordera profunda unilateral inmediata y riesgo de infecciones graves (meningitis). <span class="cita">(20)</span></p>
+                        </div>
+                         <div class="pathology-card border-l-4 border-yellow-500">
+                            <span class="tag tag-audio-org">Mixta</span>
+                            <h4 class="path-title">Hipoacusia Mixta</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Combinación de hipoacusia de conducción y sensorioneural. <span class="cita">(3)</span></p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Otosclerosis de larga data, otitis media crónica que daña el oído interno. <span class="cita">(3)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Baja intensidad y dificultad de discriminación (doble afección). <span class="cita">(3)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Problemas mecánicos y nerviosos simultáneos.</p>
+                            <p class="path-detail"><strong>5. Afección:</strong> Dificultad para amplificar el sonido (conducción) y para procesarlo (sensorioneural). <span class="cita">(3)</span></p>
                         </div>
                     </div>
                 </div>
@@ -368,24 +636,27 @@
             <div class="laminario-card">
                 <div class="laminario-header header-lenguaje">
                     <div><h2 class="text-2xl font-bold text-orange-900">🧠 Lenguaje</h2></div>
-                    <button class="btn-gen" onclick="generateCase('Lenguaje')"><i class="fas fa-robot"></i> Caso Clínico</button>
                 </div>
                 <div class="card-body">
                     <h3 class="section-title text-orange-700"><i class="fas fa-brain"></i> Centros Neurológicos</h3>
                     <details><summary>Áreas de Producción y Comprensión</summary><div class="detail-content">AB 44/45 (Broca), AB 22 (Wernicke), AB 39 (Angular).</div></details>
                     <details><summary>Vías de Conexión</summary><div class="detail-content">Fascículo Arqueado (Repetición).</div></details>
-
+                    
                     <h3 class="section-title text-orange-700"><i class="fas fa-comments"></i> Trastornos</h3>
                     <div class="pathology-grid">
                         <div class="pathology-card border-l-4 border-orange-500">
-                            <span class="tag tag-neuro">Afasia</span><h4 class="path-title">Afasia de Broca</h4>
+                            <span class="tag tag-lenguaje-neuro">Afasia</span><h4 class="path-title">Afasia de Broca</h4>
                             <p class="path-detail"><strong>1. Descripción:</strong> No fluente (motora). <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>2. Causas:</strong> ACV. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Dificultad para encontrar palabras (anomia), frustración. <span class="cita">(1)</span></p>
                             <p class="path-detail"><strong>4. Qué produce:</strong> Habla lenta, agramatismo. <span class="cita">(1)</span></p>
                             <p class="path-detail"><strong>5. Afección:</strong> Frustración (comprende), difícil comunicarse. <span class="cita">(1)</span></p>
                         </div>
                         <div class="pathology-card border-l-4 border-orange-500">
-                            <span class="tag tag-neuro">Afasia</span><h4 class="path-title">Afasia de Wernicke</h4>
+                            <span class="tag tag-lenguaje-neuro">Afasia</span><h4 class="path-title">Afasia de Wernicke</h4>
                             <p class="path-detail"><strong>1. Descripción:</strong> Fluente (sensorial). <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>2. Causas:</strong> ACV. <span class="cita">(1)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> No comprensión, habla excesiva sin sentido. <span class="cita">(1)</span></p>
                             <p class="path-detail"><strong>4. Qué produce:</strong> Jerga, parafasias. No comprende. <span class="cita">(1)</span></p>
                             <p class="path-detail"><strong>5. Afección:</strong> Anosognosia. Comunicación inefectiva. <span class="cita">(1)</span></p>
                         </div>
@@ -399,25 +670,93 @@
             <div class="laminario-card">
                 <div class="laminario-header header-voz">
                     <div><h2 class="text-2xl font-bold text-pink-900">🎤 Voz</h2></div>
-                    <button class="btn-gen" onclick="generateCase('Voz')"><i class="fas fa-robot"></i> Caso Clínico</button>
                 </div>
                 <div class="card-body">
                     <h3 class="section-title text-pink-700"><i class="fas fa-brain"></i> Centros Neurológicos</h3>
-                    <details><summary>Corteza Motora y Límbica</summary><div class="detail-content">AB 4 (Voluntario), Límbico (Emocional).</div></details>
-                    <details><summary>Tronco (Núcleo Ambiguo)</summary><div class="detail-content">Origen N. Vago.</div></details>
+                    <details open><summary>Vía Cortical (Motor y Planificación)</summary>
+                        <div class="detail-content">
+                            <div class="ab-item"><strong>Corteza Motora Primaria (AB 4):</strong> Ejecución directa de la orden de fonación.</div>
+                            <div class="ab-item"><strong>Área de Broca (AB 44):</strong> Planificación motora del inicio de la fonación.</div>
+                            <div class="ab-item"><strong>Área de Wernicke (AB 22):</strong> Comprensión necesaria para el control de la retroalimentación auditiva (monitoreo).</div>
+                        </div>
+                    </details>
+                     <details><summary>Sistemas de Modulación (Subcorticales)</summary>
+                        <div class="detail-content">
+                            <div class="ab-item"><strong>Ganglios Basales:</strong> Estabilizan el tono vocal y la fluidez. Su disfunción causa temblor o espasmos vocales.</div>
+                            <div class="ab-item"><strong>Cerebelo:</strong> Coordina la presión aérea con el cierre laríngeo (timing) y regula la prosodia.</div>
+                            <div class="ab-item"><strong>Tálamo:</strong> Filtra y releva la información sensorial laríngea.</div>
+                        </div>
+                    </details>
+                    <details><summary>Vía Final Común (Nervios Craneales y Espinales)</summary>
+                        <div class="detail-content">
+                            <div class="ab-item"><strong>Nervio Vago (X):</strong> Inervación motora de la laringe. Es el motor directo de la fonación (Motoneurona Inferior).</div>
+                            <div class="ab-item"><strong>Nervio Accesorio (XI):</strong> Ayuda en movimientos de la faringe y paladar blando.</div>
+                            <div class="ab-item"><strong>Nervios Espinales (C3-C5):</strong> Aportan la presión aérea subglótica (Diafragma), esencial para el volumen e intensidad.</div>
+                        </div>
+                    </details>
 
                     <h3 class="section-title text-pink-700"><i class="fas fa-stethoscope"></i> Trastornos</h3>
                     <div class="pathology-grid">
                         <div class="pathology-card border-l-4 border-pink-500">
-                            <span class="tag tag-neuro">Neurogénica</span><h4 class="path-title">Parálisis Cordal</h4>
-                            <p class="path-detail"><strong>1. Descripción:</strong> Falla motriz (MNI). <span class="cita">(10)</span></p>
+                            <span class="tag tag-voz-neuro">Neurogénica</span><h4 class="path-title">Parálisis Cordal</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Falla motriz (Motoneurona Inferior). <span class="cita">(10)</span> **Centro afectado: Nervio Vago (X)**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Cirugía de cuello (tiroides), tumores, ACV de tronco. <span class="cita">(10)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Disfonía, ahogo al final de la frase, voz débil.</p>
                             <p class="path-detail"><strong>4. Qué produce:</strong> Voz soplada. <span class="cita">(10)</span></p>
                             <p class="path-detail"><strong>5. Afección:</strong> Fatiga vocal, riesgo aspiración. <span class="cita">(10)</span></p>
                         </div>
-                        <div class="pathology-card border-l-4 border-orange-500">
-                            <span class="tag tag-org">Orgánica</span><h4 class="path-title">Nódulos Vocales</h4>
-                            <p class="path-detail"><strong>1. Descripción:</strong> Lesiones benignas (bilaterales). <span class="cita">(15)</span></p>
+                        <div class="pathology-card border-l-4 border-pink-500">
+                            <span class="tag tag-voz-org">Orgánica</span>
+                            <h4 class="path-title">Nódulos Vocales</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Lesiones benignas (bilaterales). <span class="cita">(15)</span> **Centro afectado: N/A (Orgánico Local)**</p>
                             <p class="path-detail"><strong>2. Causas:</strong> Abuso crónico. <span class="cita">(15)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Ronquera, quiebres en la voz. <span class="cita">(15)</span></p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Disfonía, voz grave y áspera.</p>
+                            <p class="path-detail"><strong>5. Afección:</strong> Disminución del rango vocal.</p>
+                        </div>
+                        <div class="pathology-card border-l-4 border-pink-500">
+                            <span class="tag tag-voz-neuro">Neurogénica</span>
+                            <h4 class="path-title">Disfonía Espasmódica</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Distonía focal laríngea (Ganglios Basales). <span class="cita">(2)</span> **Centro afectado: Ganglios Basales**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Idiopática (disfunción de Ganglios Basales). <span class="cita">(14)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Esfuerzo al hablar, voz se "cierra" o se "escapa".</p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Quiebres y tensión al hablar (aductora) o soplada (abductora). <span class="cita">(2)</span></p>
+                            <p class="path-detail"><strong>5. Afección:</strong> Interrupción severa de la comunicación hablada. <span class="cita">(14)</span></p>
+                        </div>
+                        <div class="pathology-card border-l-4 border-pink-500">
+                            <span class="tag tag-voz-neuro">Neurogénica</span>
+                            <h4 class="path-title">Parálisis de Nervio Laríngeo Superior</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Debilidad del músculo cricotiroideo (Motoneurona Inferior). <span class="cita">(10)</span> **Centro afectado: Nervio Laríngeo Superior (X)**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Virus, trauma por intubación. <span class="cita">(10)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Fatiga vocal al cantar o hablar en tonos altos.</p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Monotono, dificultad en el tono agudo (tensión). <span class="cita">(10)</span></p>
+                            <p class="path-detail"><strong>5. Afección:</strong> Reducción del rango vocal y fatiga. <span class="cita">(10)</span></p>
+                        </div>
+                        <div class="pathology-card border-l-4 border-pink-500">
+                            <span class="tag tag-voz-func">Funcional</span>
+                            <h4 class="path-title">Disfonía por Tensión Muscular</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Tensión excesiva de la musculatura laríngea sin patología orgánica primaria. <span class="cita">(15)</span> **Centro afectado: Vía Cortical/Patrón Motor**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Abuso vocal, Estrés, Patrón respiratorio inadecuado. <span class="cita">(15)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Dolor de garganta, fatiga vocal, sensación de cuerpo extraño.</p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Voz tensa, forzada, sin descanso visible.</p>
+                            <p class="path-detail"><strong>5. Afección:</strong> Disminución de la resistencia vocal y disfonía persistente.</p>
+                        </div>
+                        <div class="pathology-card border-l-4 border-pink-500">
+                            <span class="tag tag-voz-org">Orgánica</span>
+                            <h4 class="path-title">Laringitis Crónica</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Inflamación e irritación de la laringe. <span class="cita">(15)</span> **Centro afectado: N/A (Orgánico Local)**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Reflujo, infección viral, abuso vocal agudo. <span class="cita">(15)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Dolor de garganta, tos persistente.</p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Voz áspera, ronquera, tos.</p>
+                            <p class="path-detail"><strong>5. Afección:</strong> Molestia al tragar (disfagia), limitación en la intensidad.</p>
+                        </div>
+                        <div class="pathology-card border-l-4 border-pink-500">
+                            <span class="tag tag-voz-org">Orgánica</span><h4 class="path-title">Pólipos de las Cuerdas Vocales</h4>
+                            <p class="path-detail"><strong>1. Descripción:</strong> Lesiones benignas (generalmente unilateral, vascularizadas). <span class="cita">(15)</span> **Centro afectado: N/A (Orgánico Local)**</p>
+                            <p class="path-detail"><strong>2. Causas:</strong> Abuso vocal crónico o trauma agudo. <span class="cita">(15)</span></p>
+                            <p class="path-detail"><strong>3. Síntomas:</strong> Ronquera súbita (pólipos), sensación de cuerpo extraño.</p>
+                            <p class="path-detail"><strong>4. Qué produce:</strong> Disfonía, voz grave y áspera.</p>
+                            <p class="path-detail"><strong>5. Afección:</strong> Disminución del rango vocal.</p>
                         </div>
                     </div>
                 </div>
@@ -426,56 +765,21 @@
 
     </main>
 
-    <!-- CHAT WIDGET -->
-    <div id="chat-widget">
-        <div id="chat-window">
-            <div class="bg-indigo-600 text-white p-3 flex justify-between items-center rounded-t-lg">
-                <span>Tutor Clínico IA</span>
-                <button onclick="toggleChat()" style="background:none;border:none;color:white;"><i class="fas fa-times"></i></button>
-            </div>
-            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-slate-50 text-sm space-y-3">
-                <div class="msg msg-ai self-start bg-white border p-2 rounded-lg shadow-sm text-slate-700">Hola. Soy tu asistente clínico. ¿Tienes dudas sobre la sección actual?</div>
-            </div>
-            <div class="p-3 border-t bg-white flex gap-2">
-                <input type="text" id="chat-input" placeholder="Pregunta algo..." class="flex-1 border rounded-full px-3 py-2 text-sm outline-none focus:border-indigo-500">
-                <button onclick="sendMessage()" class="bg-indigo-600 text-white rounded-full w-9 h-9 flex items-center justify-center hover:bg-indigo-700"><i class="fas fa-paper-plane text-xs"></i></button>
-            </div>
-        </div>
-        <button onclick="toggleChat()" class="w-14 h-14 bg-indigo-600 text-white rounded-full shadow-lg flex items-center justify-center text-2xl hover:scale-110 transition-transform"><i class="fas fa-comment-medical"></i></button>
-    </div>
+    <!-- CHAT WIDGET (Eliminado) -->
+    <div id="chat-widget"></div>
 
     <script>
         function showPage(pageId) {
             document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
             document.getElementById('page-' + pageId).classList.add('active');
-
+            
             document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
             const btn = document.querySelector(`.nav-btn-${pageId}`) || document.querySelector(`.nav-${pageId}`);
             if(btn) btn.classList.add('active');
-
+            
             window.scrollTo(0,0);
         }
-
-        // Placeholder IA
-        const apiKey = "";
-        async function generateCase(topic) { alert("Generando caso de " + topic + "..."); }
-        function toggleChat() {
-            const w = document.getElementById('chat-window');
-            w.style.display = w.style.display === 'flex' ? 'none' : 'flex';
-        }
-        function sendMessage() {
-            const input = document.getElementById('chat-input');
-            const msg = input.value;
-            if(!msg) return;
-            const container = document.getElementById('chat-messages');
-            container.innerHTML += `<div class="msg msg-user bg-indigo-600 text-white p-2 rounded mb-2 self-end ml-auto w-fit">${msg}</div>`;
-            input.value = '';
-             setTimeout(() => {
-                container.innerHTML += `<div class="msg msg-ai bg-white border p-2 rounded mb-2 w-fit">Procesando... (IA)</div>`;
-                container.scrollTop = container.scrollHeight;
-            }, 500);
-        }
-
+        
         document.addEventListener('DOMContentLoaded', () => { showPage('intro'); });
     </script>
 </body>
